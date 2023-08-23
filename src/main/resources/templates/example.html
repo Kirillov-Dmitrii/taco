@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+</head>
+<body>
+
+    <h1>Thymeleaf example</h1>
+
+    <input type="text"  value="movie" th:value="${name}">
+    <p th:text="${content}">nothing</p>
+
+    <br/>
+    <br/>
+    <br/>
+
+    <p th:text="${taco.name}"></p>
+    <p th:each="ingredient : ${taco.ingredient}" th:text="${ingredient.name}">nothing
+
+    <div class="ingredietn-group" th:object="${taco}">
+        <h3>Pick your wrap: </h3>
+        <div th:each="ingredient : *{ingredient}">
+            <input type="checkbox" th:value="${ingredient.id}">
+            <span th:text="${ingredient.name}">ИНГРИДИЕНТЫ</span>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
