@@ -3,6 +3,11 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Taco Cloud</title>
+    <style>
+        .validationErrors {
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <h1>Disign your taco</h1>
@@ -10,13 +15,16 @@
 <form method="post" th:object="${taco}">
     <div class="grid">
         <div class="ingredient-group">
+
+            <span class="validationErrors"
+                  th:if="${#fields.hasErrors()}"
+                  th:errors="*{ingredient}"></span>
             <h3>Pick your wrap: </h3>
             <div th:each="ingredient : ${wrap}">
                 <input type="checkbox" th:field="*{ingredient}" th:value="${ingredient.id}">
                 <span th:text="${ingredient.name}">ИНГРИДИЕНТЫ</span>
             </div>
         </div>
-
         <div class="ingredient-group" id="proteins">
             <h3>Pick your protein:</h3>
             <div th:each="ingredient : ${protein}">
@@ -50,6 +58,7 @@
     <div>
         <h3>Name your taco creation:</h3>
         <input type="text" th:field="*{name}"/>
+        <span class="validationErrors" th:if="${#fields.hasErrors()}" th:errors="*{name}"></span>
         <br/>
         <button>Submit Your Taco</button>
     </div>
